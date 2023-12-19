@@ -51,7 +51,7 @@ class FileStorage:
                 temp = json.load(f)
                 for key in temp:
                     self.__objects[key] = classes[temp[key]['__class__']]
-                    (**temp[key])
+                    self.__objects[key].__init__(**temp[key])
         except FileNotFoundError:
             pass
 

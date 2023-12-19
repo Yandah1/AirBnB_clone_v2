@@ -12,7 +12,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 time = "%Y-%m-%dT%H:%M:%S.%f"
 
-if models.HBNB_TYPE_STORAGE == "db":
+if models.HBNB_STORAGE == "db":
     Base = declarative_base()
 else:
     Base = object
@@ -20,7 +20,7 @@ else:
 
 class BaseModel:
     """A base class for all hbnb models"""
-    if models.HBNB_TYPE_STORAGE == "db":
+    if models.HBNB_STORAGE == "db":
         id = Column(String(60), primary_key=True)
         created_at = Column(DateTime, default=datetime.utcnow)
         updated_at = Column(DateTime, default=datetime.utcnow)

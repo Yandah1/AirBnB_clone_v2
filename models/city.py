@@ -10,7 +10,7 @@ import models
 
 class City(BaseModel, Base):
     """ The city class """
-    if models.HBNB_TYPE_STORAGE == "db":
+    if models.HBNB_STORAGE == "db":
         __tablename__ = 'cities'
         state_id = Column(String(60), ForeignKey('states.id'), nullable=False)
         name = Column(String(128), nullable=False)

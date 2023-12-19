@@ -9,9 +9,9 @@ import sqlalchemy
 import models
 
 
-class State(BaseModel):
+class State(BaseModel, Base):
     """ State class """
-    if models.HBNB_TYPE_STORAGE == "db":
+    if models.HBNB_STORAGE == "db":
         __tablename__ = 'states'
         name = Column(String(128), nullable=False)
         cities = relationship("City", backref="state")
@@ -22,7 +22,7 @@ class State(BaseModel):
         """initializes state"""
         super().__init__(*args, **kwargs)
 
-    if models.HBNB_TYPE_STORAGE != "db":
+    if models.HBNB_STORAGE != "db":
         @property
         def cities(self):
             """getter for list of city instances related to the state"""
