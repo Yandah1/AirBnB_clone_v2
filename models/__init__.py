@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """This module instantiates an object of class FileStorage"""
-
+from models.base_model import BaseModel
 from os import getenv
 
 
@@ -16,5 +16,3 @@ else:
 
     storage = FileStorage()
     storage.reload()
-
-from models.base_model import BaseModel
