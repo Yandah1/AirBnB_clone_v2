@@ -8,7 +8,7 @@ import sqlalchemy
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship
 
-if models.storage_t == 'db':
+if models.HBNB_STORAGE == 'db':
     place_amenity = Table('place_amenity', Base.metadata,
                           Column('place_id', String(60),
                                  ForeignKey('places.id', onupdate='CASCADE',
@@ -54,7 +54,7 @@ class Place(BaseModel, Base):
         """initializes Place"""
         super().__init__(*args, **kwargs)
 
-    if models.storage_t != 'db':
+    if models.HBNB_STORAGE != 'db':
         @property
         def reviews(self):
             """getter returns the list of Review instances"""
