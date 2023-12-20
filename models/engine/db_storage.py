@@ -3,23 +3,24 @@
 Contains the class DBStorage
 """
 
-import models
-from models.amenity import Amenity
-from models.base_model import BaseModel, Base
-from models.city import City
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.user import User
-from os import getenv
-
 import os
+from os import getenv
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+import models
+from models.amenity import Amenity
+from models.base_model import BaseModel, Base
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
-classes = {"Amenity": Amenity, "City": City,
-           "Place": Place, "Review": Review, "State": State, "User": User}
+
+classes = {"User": User,"Place": Place,"State": State,
+           "City": City,"Amenity": Amenity,"Review": Review}
 
 
 class DBStorage:
@@ -47,7 +48,7 @@ class DBStorage:
     def all(self, cls=None):
         """Dictionary of models currently in storage"""
         objects = dict()
-        all_classes = (User, State, City, Amenity, Place, Review)
+        all_classes = (User, Place, State, City, Amenity, Review)
         if cls is None:
             for class_type in all_classes:
                 query = self.__session.query(class_type)
