@@ -17,30 +17,22 @@ def do_deploy(archive_path):
     """
     if not os.path.exists(archive_path):
         return False
-
-    data_path = '/data/web_static/releases/'
-    tmp = archive_path.split('.')[0]
-    name = tmp.split('/')[1]
-    dest = data_path + name
-
+    
+    file_name = os.path.basename(archive_path)
+    folder_name = file_name.replace(".tgz", "")
+    folder_path = "/data/web_static/releases/{}/".format(folder_name)
+    success = False
     try:
-        # Upload the archive to the /tmp/ directory of the web server
-        put(archive_path, '/tmp')
-        # Create the destination directory on the web server
-        run('mkdir -p {}'.format(dest))
-        # Extract the archive to the destination directory
-        run('tar -xzf /tmp/{}.tgz -C {}'.format(name, dest))
-        # Remove the archive from the web server
-        run('rm -f /tmp/{}.tgz'.format(name))
-        # Move the contents of web_static to the destination directory
-        run('mv {}/web_static/* {}/'.format(dest, dest))
-        # Remove the original web_static directory
-        run('rm -rf {}/web_static'.format(dest))
-        # Delete the symbolic link /data/web_static/current
-        run('rm -rf /data/web_static/current')
-        # Create a new symbolic link /data/web_static/current
-        # pointing to the deployed directory
-        run('ln -s {} /data/web_static/current'.format(dest))
-        return True
+        put(archive_path, "/tmp/{}".format(file_name))
+        run("mkdir -p {}".format(folder_path))
+        run("tar -xzf /tmp/{} -C {}".format(file_name, folder_path))
+        run("rm -rf /tmp/{}".format(file_name))
+        run("mv {}web_static/* {}".format(folder_path, folder_path))
+        run("rm -rf {}web_static".format(folder_path))
+        run("rm -rf /data/web_static/current")
+        run("ln -s {} /data/web_static/current".format(folder_path))
+        print('New version deployed!')
+        success = True
     except Exception:
-        return False
+        success = False
+    return success
