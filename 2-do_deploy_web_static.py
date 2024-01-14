@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 '''
-Fabric script that distributes an archive to web servers using the function do_deploy.
+Fabric script that distributes an archive to web servers
+using the function do_deploy.
 '''
 from fabric.api import env, put, run, sudo
 from os.path import exists
@@ -8,6 +9,7 @@ from fabric.contrib import files
 
 
 env.hosts = ['54.165.52.121', '34.204.81.17']
+
 
 def do_deploy(archive_path):
     """
@@ -36,7 +38,8 @@ def do_deploy(archive_path):
         run('rm -rf {}/web_static'.format(dest))
         # Delete the symbolic link /data/web_static/current
         run('rm -rf /data/web_static/current')
-        # Create a new symbolic link /data/web_static/current pointing to the deployed directory
+        # Create a new symbolic link /data/web_static/current
+        # pointing to the deployed directory
         run('ln -s {} /data/web_static/current'.format(dest))
         return True
     except Exception:
