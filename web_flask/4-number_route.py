@@ -35,7 +35,7 @@ def c_text(text):
 @app.route('/python/<text>')
 def python_text(text):
     """display “Python ”, followed by the value of the text"""
-    text - text.replace('_', ' ')
+    text = text.replace('_', ' ')
     return 'python {}'.format(text)
 
 
@@ -43,7 +43,7 @@ def python_text(text):
 @app.route('/number/<int:n>')
 def dislay_number(n):
     """display “n is a number”"""
-    return '{} is number'.format(n)
+    return '{} is a number'.format(n)
 
 
 # Check if the script is executed directly (not imported as a module)
