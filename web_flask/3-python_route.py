@@ -31,9 +31,10 @@ def c_text(text):
 
 
 # Route for "/python/<text>"
-@app.route('/python/')
+@app.route('/python', defaults={'text': 'is cool'})
 @app.route('/python/<text>')
-def python_text(text='is cool'):
+def python_text(text):
+    """display “Python ”, followed by the value of the text"""
     text - text.replace('_', ' ')
     return 'python {}'.format(text)
 
