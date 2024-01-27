@@ -5,7 +5,7 @@ from flask import Flask
 
 # Create an instance of the Flask class
 app = Flask(__name__)
-app.url_map.strict_slashes = False
+app.url_map.strict_slashes=False
 
 
 # Define a route for the root path ("/")
@@ -22,15 +22,15 @@ def display_hbnb():
     return 'HBNB'
 
 
-# Route for "/c/tect"
-@app.route('/c/text')
+# Route for "/c/text"
+@app.route('/c/<text>')
 def c_text(text):
-    """ replace underscore _ symbols with a spac"""
+    """ replace underscore _ symbols with a space"""
     text = text.replace('_', ' ')
-    return 'c {}'.format(text)
+    return 'C {}'.format(text)
 
 
 # Check if the script is executed directly (not imported as a module)
 if __name__ == '__main__':
     """ Run the app on 0.0.0.0 and port 5000"""
-    app.run(host='0.0.0.0', port=5000)i
+    app.run(host='0.0.0.0', port=5000)
