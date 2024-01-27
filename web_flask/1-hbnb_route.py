@@ -15,10 +15,10 @@ def hello_hbnb():
     return 'Hello HBNB!'
 
 
-# Route for "/hbnb" 
-@app.route('/')
-def hbnb():
-    """ display hbnb """
+# Route for "/hbnb"
+@app.route('/hbnb')
+def display_hbnb():
+    """ display hbnb page """
     return 'HBNB'
 
 
