@@ -5,7 +5,7 @@ from flask import Flask
 
 # Create an instance of the Flask class
 app = Flask(__name__)
-app.url_map.strict_slashes=False
+app.url_map.strict_slashes = False
 
 
 # Define a route for the root path ("/")
