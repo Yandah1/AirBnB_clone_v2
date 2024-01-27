@@ -46,6 +46,13 @@ def dislay_number(n):
     return '{} is a number'.format(n)
 
 
+# Route for "/number_template/<n>"
+@app.route('/number_template/<int:n>')
+def number_template(n):
+    """display a HTML page only if n is an integer"""
+    return render_template('number.html', number=n)
+
+
 # Check if the script is executed directly (not imported as a module)
 if __name__ == '__main__':
     """ Run the app on 0.0.0.0 and port 5000"""
